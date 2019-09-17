@@ -89,7 +89,6 @@ namespace Xamarin.Forms.OpenTok.Android.Service
                 return false;
             }
 
-            IsSessionStarted = true;
             EndSession();
 
             var builder = new Session.Builder(CrossCurrentActivity.Current.AppContext, ApiKey, SessionId);
@@ -105,6 +104,7 @@ namespace Xamarin.Forms.OpenTok.Android.Service
 
             builder.Dispose();
 
+            IsSessionStarted = true;
             Log.Debug(Tag, "Session Started");
             return true;
         }
@@ -158,6 +158,8 @@ namespace Xamarin.Forms.OpenTok.Android.Service
                         Session.Dispose();
                         Session = null;
                     }
+
+                    Log.Debug(Tag, "Session Ended");
                 }
             }
             finally
